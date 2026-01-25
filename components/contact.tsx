@@ -17,8 +17,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Send, Calendar } from "lucide-react";
 import Link from "next/link";
 
+type FormData = {
+  name: string
+  email: string
+  message: string
+}
+
 export function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",

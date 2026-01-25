@@ -48,7 +48,7 @@ export function Skills() {
           <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
             Skills & Technologies
           </h2>
-          <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
+          <p className="max-w-2xl mb-12 text-lg text-muted-foreground">
             Organized by proficiency, not just a list. I'd rather show you what
             I actually know than pad this section with every tool I've touched
             once.
@@ -80,8 +80,8 @@ export function Skills() {
             ))}
           </div>
 
-          <div className="mt-12 p-6 bg-muted/50 rounded-lg">
-            <h3 className="font-semibold mb-3">A note on security</h3>
+          <div className="p-6 mt-12 rounded-lg bg-muted/50">
+            <h3 className="mb-3 font-semibold">A note on security</h3>
             <p className="text-muted-foreground">
               My cybersecurity major means I think about security differently
               than most web developers. I understand OWASP Top 10

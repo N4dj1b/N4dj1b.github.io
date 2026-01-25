@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+<<<<<<< HEAD
   title: "Mohamed Nadjib Taleb | Full-Stack Developer",
   description:
     "Full-stack developer with a cybersecurity background. 4th year CS student at ESI-SBA building secure, production-ready web applications with Next.js, Node.js, and PostgreSQL.",
@@ -40,6 +41,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+=======
+  title: "Nadjib - Software Developer",
+  description:
+    "Portfolio website of Mohamed Nadjib Taleb, a passionate software developer specializing in modern web technologies.",
+>>>>>>> 0ed4629dfdc9e8b55345588834b166474a00f85e
 };
 
 export default function RootLayout({

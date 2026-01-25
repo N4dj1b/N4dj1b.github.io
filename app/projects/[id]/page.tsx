@@ -151,6 +151,7 @@ const projects: Record<string, ProjectType> = {
           "Confirmation — Automatic email sent with reservation details and modification link",
       },
     ],
+<<<<<<< HEAD
     problem:
       "Small restaurants often rely on phone calls for reservations, leading to missed bookings, double bookings, and no-shows. They need a simple system that doesn't require training to use.",
     approach: [
@@ -180,6 +181,57 @@ const projects: Record<string, ProjectType> = {
       "No payment integration—out of scope for school project, but would be essential for real restaurants (deposits, cancellation fees)",
       "Single restaurant per instance—didn't build multi-tenancy. Each restaurant would need their own deployment",
       "Basic analytics—shows reservation counts but no advanced insights like peak hours, no-show prediction",
+=======
+    githubUrl: "https://github.com/N4dj1b/Realtime-Chat",
+    liveUrl: "https://mychat1pp.netlify.app/",
+    challenges:
+      "Implementing real-time messaging with WebSockets was a significant challenge. I overcame this by using Firebase's real-time database and authentication features, which simplified the process of managing user sessions and message delivery.",
+    outcome:
+      "The chat app has over 5,000 active users and has been praised for its intuitive interface and fast performance. It has also been featured in several tech blogs for its innovative use of real-time technology.",
+  },
+  "weather-dashboard": {
+    title: "Weather Dashboard",
+    description:
+      "A responsive weather dashboard with interactive visualizations.",
+    longDescription:
+      "This weather dashboard provides comprehensive weather information with beautiful visualizations, location-based forecasts, and historical data analysis. The application features interactive charts, maps, and a clean, intuitive interface that works seamlessly across all devices.",
+    image: "/placeholder.svg?height=400&width=800",
+    technologies: ["React", "OpenWeatherMap API", "CSS"],
+    features: [
+      "Current weather conditions",
+      "7-day weather forecast",
+      "Interactive weather maps",
+      "Historical weather data",
+      "Location-based search",
+      "Weather alerts and notifications",
+      "Customizable dashboard widgets",
+      "Data export functionality",
+    ],
+    githubUrl: "https://github.com",
+    liveUrl: "https://example.com",
+    challenges:
+      "Handling large amounts of weather data and presenting it in an intuitive way was challenging. I implemented efficient data caching strategies and created custom chart components for optimal performance.",
+    outcome:
+      "The dashboard serves over 10,000 daily active users and has been featured in several weather-related publications for its innovative design and functionality.",
+  },
+  "Tours-platform": {
+    title: "Mytours",
+    description:
+      "A platform for booking and managing tours with user reviews and ratings.",
+    longDescription:
+      "This platform allows users to explore various tours, book them online, and leave reviews. It features a user-friendly interface, secure payment processing, and an admin dashboard for managing tours and user feedback.",
+    image: "/placeholder.svg?height=400&width=800",
+    technologies: ["Node.js", "Express", "MongoDB", "Pug", "Stripe", "Mapbox GL"],
+    features: [
+      "Tour listings with detailed descriptions",
+      "User authentication and profile management",
+      "Booking system with secure payment integration",
+      "User reviews and ratings",
+      "Admin dashboard for tour management",
+      "Responsive design for mobile and desktop",
+      "Search and filter functionality",
+      "Email notifications for bookings and reviews",
+>>>>>>> 0ed4629dfdc9e8b55345588834b166474a00f85e
     ],
     outcome:
       "Completed as a team project. Successfully demonstrated real-time booking with concurrent users during presentation. Professor noted the database design was more sophisticated than typical school projects.",
@@ -384,6 +436,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           )}
 
+<<<<<<< HEAD
           {/* The Problem */}
           <section className="mb-12">
             <div className="flex items-center gap-2 mb-4">
@@ -394,6 +447,19 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.problem}
             </p>
           </section>
+=======
+          <div className="grid gap-8 mb-8 md:grid-cols-2">
+            <Card>
+              <CardHeader>
+                <CardTitle>Project Purpose and Goal</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  {project.longDescription}
+                </p>
+              </CardContent>
+            </Card>
+>>>>>>> 0ed4629dfdc9e8b55345588834b166474a00f85e
 
           {/* My Approach */}
           <section className="mb-12">
