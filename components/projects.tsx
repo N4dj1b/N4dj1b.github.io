@@ -55,7 +55,7 @@ export function Projects() {
       id: "cyble",
       title: "CyBle",
       subtitle: "Cybersecurity Awareness Platform",
-      context: "Internship Project",
+      context: "Internship Project at Cybears",
       contextIcon: Building2,
       contextColor: "text-green-600 bg-green-100 dark:bg-green-900/30",
       description:
@@ -63,13 +63,13 @@ export function Projects() {
       problem:
         "Organizations struggle to educate employees about security threats in an engaging way.",
       outcome:
-        "Built during a 2-month internship. The team continued development after I left.",
+        "MVP built during a 2-month internship. The team continued development after I left.",
       technologies: [
         "Next.js",
         "TypeScript",
-        "PostgreSQL",
         "Tailwind CSS",
-        "Node.js",
+        "Django REST",
+        "PostgreSQL",
       ],
       previewImage: "/projects/cyble/hero.png",
       githubUrl: null, // Company project
@@ -80,7 +80,7 @@ export function Projects() {
       id: "restona",
       title: "Restona",
       subtitle: "Restaurant Reservation System",
-      context: "School Project",
+      context: "Startup Idea & School Project",
       contextIcon: GraduationCap,
       contextColor: "text-blue-600 bg-blue-100 dark:bg-blue-900/30",
       description:
@@ -92,9 +92,10 @@ export function Projects() {
       technologies: [
         "Next.js",
         "TypeScript",
-        "PostgreSQL",
         "Tailwind CSS",
-        "Express",
+        "Node.js",
+        "Express.js",
+        "PostgreSQL",
       ],
       previewImage: "/projects/restona/hero.png",
       githubUrl: "https://github.com/N4dj1b/Restona",
@@ -114,7 +115,13 @@ export function Projects() {
         "Student organizations needed a simple way to manage event sign-ups without relying on Google Forms.",
       outcome:
         "Built role-based access control and integrated QR codes for event check-ins.",
-      technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+      technologies: [
+        "React.js",
+        "Tailwind CSS",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+      ],
       previewImage: "/projects/events/hero.png",
       githubUrl: "https://github.com/N4dj1b/EventManagement",
       liveUrl: null,
@@ -128,7 +135,7 @@ export function Projects() {
       title: "Mytours",
       description:
         "Tour booking platform built while learning Node.js and server-side rendering.",
-      technologies: ["Node.js", "Express", "MongoDB", "Pug"],
+      technologies: ["Pug", "Node.js", "Express", "MongoDB"],
       githubUrl: "https://github.com/N4dj1b/Mytours",
       liveUrl: "https://mytours-6x20.onrender.com",
     },
@@ -137,7 +144,7 @@ export function Projects() {
       title: "Real-Time Chat",
       description:
         "Chat application built while learning Firebase and real-time data sync.",
-      technologies: ["React", "Firebase", "Tailwind CSS"],
+      technologies: ["React.js", "Tailwind CSS", "Firebase"],
       githubUrl: "https://github.com/N4dj1b/Realtime-Chat",
       liveUrl: "https://mychat1pp.netlify.app/",
     },

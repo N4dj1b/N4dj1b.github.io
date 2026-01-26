@@ -30,8 +30,8 @@ export function Hero() {
           </p>
 
           <p className="max-w-2xl mx-auto mb-10 text-lg leading-relaxed text-muted-foreground">
-            4th year CS student at ESI-SBA, specializing in security. I've
-            shipped a
+            4th year CS student at <a href="https://www.esi-sba.dz/">ESI-SBA</a>
+            , specializing in security. I've shipped a
             <Link href="#cyble" className="text-primary hover:underline">
               {" "}
               cybersecurity awareness platform{" "}

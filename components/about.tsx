@@ -15,9 +15,12 @@ export function About() {
             <div className="space-y-6 md:col-span-3">
               <p className="text-lg leading-relaxed text-muted-foreground">
                 I'm a 4th year Computer Science student at{" "}
-                <strong className="text-foreground">ESI-SBA</strong> (École
-                Supérieure en Informatique), specializing in cybersecurity. But
-                I spend most of my time building web applications.
+                <strong className="text-foreground">
+                  <a href="https://www.esi-sba.dz/">ESI-SBA</a>
+                </strong>{" "}
+                (École Supérieure en Informatique), specializing in
+                cybersecurity. But I spend most of my time building web
+                applications.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
                 This combination isn't accidental. After seeing how many
