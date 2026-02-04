@@ -47,7 +47,7 @@ type ProjectType = {
 };
 
 export async function generateStaticParams() {
-  return [{ id: "project-1" }, { id: "project-2" }, { id: "project-3" }];
+  return [{ id: "cyble" }, { id: "restona" }, { id: "event-management" }];
 }
 
 const projects: Record<string, ProjectType> = {
