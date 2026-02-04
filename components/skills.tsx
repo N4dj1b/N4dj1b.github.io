@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 export function Skills() {
   const skillCategories = [
@@ -7,13 +8,13 @@ export function Skills() {
       title: "Strong",
       description: "Technologies I use regularly and feel confident with",
       skills: [
-        "Next.js",
-        "React",
         "TypeScript",
+        "React.js",
+        "Next.js",
         "Node.js",
         "PostgreSQL",
+        "Express.js",
         "Tailwind CSS",
-        "Express",
         "Git",
       ],
       variant: "default" as const,
@@ -26,17 +27,29 @@ export function Skills() {
         "Firebase",
         "Docker",
         "Python",
-        "Django",
+        "Django REST",
         "REST APIs",
         "Zustand",
         "Jest",
+        "Linux",
+        "Framer Motion",
+        "Redis",
       ],
       variant: "secondary" as const,
     },
     {
       title: "Exploring",
       description: "Currently learning or have limited experience with",
-      skills: ["Azure", "CI/CD", "Linux", "Cypress", "Framer Motion", "Redis"],
+      skills: [
+        "Azure",
+        "CI/CD",
+        "Cypress",
+        "Jenkins",
+        "FastAPI",
+        "GraphQL",
+        "NestJS",
+        "Flutter",
+      ],
       variant: "outline" as const,
     },
   ];
@@ -49,8 +62,7 @@ export function Skills() {
             Skills & Technologies
           </h2>
           <p className="max-w-2xl mb-12 text-lg text-muted-foreground">
-            Organized by proficiency, not just a list. I'd rather show you what
-            I actually know than pad this section with every tool I've touched
+            Organized by proficiency — not padded with every tool I've touched
             once.
           </p>
 
@@ -88,7 +100,10 @@ export function Skills() {
               vulnerabilities, secure authentication patterns, input validation,
               and why "just sanitize user input" isn't a complete answer. I
               won't claim to be a security expert, but I won't ship code with
-              obvious vulnerabilities either.
+              obvious vulnerabilities either.{" "}
+              <Link href="#projects" className="text-primary hover:underline">
+                See how I applied this →
+              </Link>
             </p>
           </div>
         </div>

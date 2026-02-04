@@ -53,23 +53,24 @@ export function Projects() {
   const projects = [
     {
       id: "cyble",
-      title: "CyBle",
-      subtitle: "Cybersecurity Awareness Platform",
-      context: "Internship Project at Cybears",
+      title: "Cybersecurity Awareness Platform",
+      subtitle: "LMS + GRC Compliance + Phishing Simulations",
+      context: "Internship at Cybears (CyLabs)",
       contextIcon: Building2,
       contextColor: "text-green-600 bg-green-100 dark:bg-green-900/30",
       description:
-        "A platform designed to train employees on recognizing cybersecurity threats through interactive modules and simulated phishing scenarios.",
+        "A comprehensive platform combining structured training (LMS), compliance mapping (GRC), and phishing simulations to strengthen organizational cyber resilience.",
       problem:
-        "Organizations struggle to educate employees about security threats in an engaging way.",
+        "Organizations need engaging security training that connects to compliance requirements and tests employees with realistic simulations.",
       outcome:
-        "MVP built during a 2-month internship. The team continued development after I left.",
+        "Delivered functional MVP in 8 weeks with LMS, compliance module, and phishing campaigns. Architecture became foundation for production version.",
       technologies: [
         "Next.js",
         "TypeScript",
         "Tailwind CSS",
         "Django REST",
         "PostgreSQL",
+        "Docker",
       ],
       previewImage: "/projects/cyble/hero.png",
       githubUrl: null, // Company project
@@ -79,16 +80,16 @@ export function Projects() {
     {
       id: "restona",
       title: "Restona",
-      subtitle: "Restaurant Reservation System",
+      subtitle: "Restaurant Management Platform",
       context: "Startup Idea & School Project",
       contextIcon: GraduationCap,
       contextColor: "text-blue-600 bg-blue-100 dark:bg-blue-900/30",
       description:
-        "A full-stack reservation system with online booking, table management, and menu display for restaurant owners.",
+        "A comprehensive platform for restaurant digitization in Algeria—menu management, multi-restaurant support, employee roles, and designed for future mobile app integration.",
       problem:
-        "Small restaurants often rely on phone calls for reservations, leading to missed bookings and no-shows.",
+        "Algerian restaurants manage operations manually, leading to inefficiency. With 5% annual market growth, they need modern digital solutions.",
       outcome:
-        "Completed as a team project. Implemented real-time availability checking and email confirmations.",
+        "Built full platform with 3 user roles, 20+ API endpoints, and multi-restaurant architecture. Presented as startup pitch with business plan.",
       technologies: [
         "Next.js",
         "TypeScript",
@@ -96,10 +97,12 @@ export function Projects() {
         "Node.js",
         "Express.js",
         "PostgreSQL",
+        "Redis",
+        "Cloudinary",
       ],
       previewImage: "/projects/restona/hero.png",
-      githubUrl: "https://github.com/N4dj1b/Restona",
-      liveUrl: null,
+      githubUrl: null,
+      liveUrl: "https://restona.vercel.app",
       featured: true,
     },
     {
@@ -132,7 +135,7 @@ export function Projects() {
   const learningProjects = [
     {
       id: "mytours",
-      title: "Mytours",
+      title: "MyTours",
       description:
         "Tour booking platform built while learning Node.js and server-side rendering.",
       technologies: ["Pug", "Node.js", "Express", "MongoDB"],
@@ -157,8 +160,9 @@ export function Projects() {
           <div className="mb-12">
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Projects</h2>
             <p className="max-w-2xl text-lg text-muted-foreground">
-              A mix of internship work, school projects, and self-directed
-              learning. I've labeled each one honestly so you know the context.
+              Real projects with real context: internship work, school
+              assignments, and experiments. Each one taught me something
+              different.
             </p>
           </div>
 
@@ -202,7 +206,7 @@ export function Projects() {
                     <div className="grid gap-6 mt-6 md:grid-cols-2">
                       <div>
                         <h4 className="mb-2 text-sm font-semibold text-foreground">
-                          The Problem
+                          Problem
                         </h4>
                         <p className="text-muted-foreground">
                           {project.problem}
@@ -210,7 +214,7 @@ export function Projects() {
                       </div>
                       <div>
                         <h4 className="mb-2 text-sm font-semibold text-foreground">
-                          What I Built
+                          Solution
                         </h4>
                         <p className="text-muted-foreground">
                           {project.outcome}
@@ -318,8 +322,8 @@ export function Projects() {
               </h3>
             </div>
             <p className="mb-6 text-muted-foreground">
-              Built while following courses to learn specific technologies. Not
-              original work, but they helped me understand the fundamentals.
+              Built while learning specific technologies. These helped me
+              understand the fundamentals before building my own projects.
             </p>
 
             <div className="grid gap-4 sm:grid-cols-2">

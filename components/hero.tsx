@@ -17,28 +17,27 @@ export function Hero() {
               <span className="relative inline-flex w-2 h-2 bg-green-500 rounded-full"></span>
             </span>
             <span className="text-sm text-muted-foreground">
-              Open to internships & junior roles
+              Open to internships, junior roles, and freelance projects
             </span>
           </div>
 
           <h1 className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl text-foreground">
-            I build web apps that don't get hacked.
+            Hey, I'm Nadjib - I build secure web apps
           </h1>
 
           <p className="mb-6 text-xl sm:text-2xl text-foreground/80">
-            Full-stack developer with a cybersecurity background
+            Full stack developer who builds web apps that are secure by design
           </p>
 
           <p className="max-w-2xl mx-auto mb-10 text-lg leading-relaxed text-muted-foreground">
-            4th year CS student at <a href="https://www.esi-sba.dz/">ESI-SBA</a>
-            , specializing in security. I've shipped a
+            I'm a CS student who builds full stack applications with security
+            baked in from day one, not patched in later. At my internship with
             <Link href="#cyble" className="text-primary hover:underline">
               {" "}
-              cybersecurity awareness platform{" "}
+              Cybears
             </Link>
-            during my internship and built full-stack apps with Next.js,
-            Node.js, and PostgreSQL. I care about writing code that's secure by
-            design, not as an afterthought.
+            , I built a platform that trains employees to recognize phishing
+            attacks before they click.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 mb-8 sm:flex-row">
@@ -46,7 +45,7 @@ export function Hero() {
               <Link href="#projects">See What I've Built</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="#contact">Let's Talk</Link>
+              <Link href="#contact">Get In Touch</Link>
             </Button>
             <Button
               variant="ghost"

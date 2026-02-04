@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Database, GraduationCap, Briefcase } from "lucide-react";
+import Link from "next/link";
 
 export function About() {
   return (
@@ -8,42 +9,46 @@ export function About() {
         <div className="max-w-4xl mx-auto">
           <h2 className="mb-4 text-3xl font-bold sm:text-4xl">About Me</h2>
           <p className="mb-12 text-lg text-muted-foreground">
-            The short version of my story.
+            From building websites to breaking them.
           </p>
 
           <div className="grid gap-12 mb-16 md:grid-cols-5">
             <div className="space-y-6 md:col-span-3">
               <p className="text-lg leading-relaxed text-muted-foreground">
-                I'm a 4th year Computer Science student at{" "}
-                <strong className="text-foreground">
-                  <a href="https://www.esi-sba.dz/">ESI-SBA</a>
-                </strong>{" "}
-                (École Supérieure en Informatique), specializing in
-                cybersecurity. But I spend most of my time building web
-                applications.
+                I started building websites to create things people would use.
+                Then I discovered how easy they are to break, and I've been
+                obsessed with both sides ever since.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                This combination isn't accidental. After seeing how many
-                security vulnerabilities come from basic web development
-                mistakes—SQL injection, XSS, insecure authentication—I realized
-                the best security starts at the code level, not as a patch
-                afterward.
+                Now I study at{" "}
+                <a
+                  href="https://www.esi-sba.dz/"
+                  target="_blank"
+                  className="font-semibold text-foreground hover:text-primary transition-colors"
+                >
+                  ESI-SBA
+                </a>{" "}
+                in Algeria. Most security issues I've seen come from basic
+                mistakes: SQL injection, XSS, weak auth flows. Things that could
+                be avoided if developers thought about security while building,
+                not after. That's the gap I want to fill.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                During my internship, I worked on{" "}
-                <strong className="text-foreground">CyBle</strong>, a
-                cybersecurity awareness platform designed to train employees on
-                recognizing threats. It was my first time shipping code that
-                real people would use—and it changed how I think about building
-                software.
+                Last summer, I interned at{" "}
+                <strong className="text-foreground">Cybears</strong>, a
+                cybersecurity company, where I helped build a platform that
+                teaches employees to recognize phishing attacks. It was my first
+                time writing code that went to production with real users, real
+                stakes, and real feedback. I learned more in those two months
+                than in a year of school projects.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                I'm currently looking for{" "}
-                <strong className="text-foreground">
-                  internship or junior full-stack roles
-                </strong>{" "}
-                where I can contribute to a product team, learn from experienced
-                engineers, and write code that matters.
+                I'm looking for a team where I can keep learning, ideally
+                somewhere I can contribute to a real product and work with
+                people better than me.{" "}
+                <Link href="#contact" className="text-primary hover:underline">
+                  If that sounds like your team, let's talk.
+                </Link>
               </p>
             </div>
 
@@ -60,7 +65,7 @@ export function About() {
                         ESI-SBA, 4th Year
                       </p>
                       <p className="mt-1 text-xs text-muted-foreground">
-                        Cybersecurity Major
+                        Cybersecurity Major • 2022 – 2027
                       </p>
                     </div>
                   </div>
@@ -76,10 +81,10 @@ export function About() {
                     <div>
                       <h3 className="text-sm font-semibold">Experience</h3>
                       <p className="text-sm text-muted-foreground">
-                        2-month internship at Cybears
+                        Internship at Cybears
                       </p>
                       <p className="mt-1 text-xs text-muted-foreground">
-                        Built CyBle platform
+                        Security awareness platform • Summer 2025
                       </p>
                     </div>
                   </div>
@@ -114,10 +119,10 @@ export function About() {
                     <div>
                       <h3 className="text-sm font-semibold">Tech Stack</h3>
                       <p className="text-sm text-muted-foreground">
-                        Next.js, Node.js, PostgreSQL
+                        React.js, Next.js, Node.js
                       </p>
                       <p className="mt-1 text-xs text-muted-foreground">
-                        TypeScript enthusiast
+                        PostgreSQL, MongoDB, TypeScript
                       </p>
                     </div>
                   </div>

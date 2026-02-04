@@ -20,7 +20,7 @@ import {
 } from "@/components/project-images";
 
 type ProjectImage = {
-  src: string;
+  src: string | string[];
   alt: string;
   caption: string;
 };
@@ -28,7 +28,7 @@ type ProjectImage = {
 type ProjectType = {
   title: string;
   subtitle: string;
-  context: "internship" | "school" | "learning";
+  context: "internship" | "school" | "school_startup" | "learning";
   description: string;
   heroImage?: string;
   images: ProjectImage[];
@@ -48,209 +48,181 @@ type ProjectType = {
 
 const projects: Record<string, ProjectType> = {
   cyble: {
-    title: "CyBle",
-    subtitle: "Cybersecurity Awareness Platform",
+    title: "Cybersecurity Education Platform",
+    subtitle: "LMS + GRC Compliance + Phishing Simulations",
     context: "internship",
     description:
-      "A platform designed to train employees on recognizing cybersecurity threats through interactive modules and simulated scenarios.",
+      "A comprehensive platform combining structured training (LMS), compliance mapping (GRC), and phishing simulations to strengthen organizational cyber resilience.",
     heroImage: "/projects/cyble/hero.png",
     images: [
       {
         src: "/projects/cyble/dashboard.png",
-        alt: "Admin dashboard showing employee training progress",
+        alt: "Manager dashboard showing employee training progress and compliance status",
         caption:
-          "Admin dashboard — Track completion rates and identify knowledge gaps across teams",
+          "Manager dashboard — Track completion rates, compliance status, and phishing campaign results",
       },
       {
-        src: "/projects/cyble/module.png",
-        alt: "Interactive training module with phishing scenario",
+        src: "/projects/cyble/lms.png",
+        alt: "Learning module with interactive lesson",
         caption:
-          "Training module — Employees learn through realistic phishing scenarios, not slides",
+          "LMS — Structured learning path: Courses → Modules → Lessons → Quizzes with gamification",
       },
       {
-        src: "/projects/cyble/quiz.png",
-        alt: "Quiz interface with scenario-based questions",
+        src: "/projects/cyble/phishing.png",
+        alt: "Phishing campaign setup interface",
         caption:
-          "Assessment — Scenario-based questions test practical knowledge, not memorization",
+          "Phishing Campaigns — Create simulated attacks with fake landing pages to test employee awareness",
       },
     ],
     problem:
-      "Organizations struggle to educate employees about security threats. Most cybersecurity training is boring—long PDFs, compliance checkboxes, content that employees click through without absorbing. Meanwhile, phishing attacks succeed because people don't recognize the signs.",
+      "Organizations struggle to build cyber resilience. Traditional training is boring PDFs employees click through without absorbing. There's no connection between training content and compliance requirements. And employees never face realistic threat simulations until a real attack happens.",
     approach: [
-      "Worked with the team to define core training modules based on the most common attack vectors (phishing, social engineering, password hygiene)",
-      "Built an interactive module system where employees learn through scenarios rather than slides",
-      "Implemented progress tracking so admins can see who's completed training and identify knowledge gaps",
-      "Designed the UI to feel modern and engaging, not like typical enterprise software",
+      "Worked within the CyLabs R&D division at Cybears to design and build the platform from scratch",
+      "Built a Learning Management System with a clear structure: Course → Module → Lesson → Quiz, including gamification (badges, achievements, leaderboards)",
+      "Implemented a Compliance Module (GRC) that maps training content to frameworks and controls—managers can align awareness efforts with organizational policies",
+      "Developed Phishing Campaign features: creating fake landing pages, email push mechanisms that avoid spam filters, and tracking employee responses",
+      "Added an escalation system that alerts employees who haven't completed training, then escalates to managers and admins if ignored",
     ],
     decisions: [
       {
-        decision: "Chose Next.js over a SPA framework",
+        decision: "Next.js + Django REST instead of a monolithic framework",
         reasoning:
-          "The platform needed good SEO for public-facing pages and fast initial loads. Server-side rendering also helped with security—less sensitive logic exposed to the client.",
+          "Separated frontend and backend for better scalability. Next.js gave us fast server-side rendering and modern React patterns. Django REST provided robust API development with built-in security features.",
       },
       {
-        decision: "PostgreSQL instead of MongoDB",
+        decision: "PostgreSQL for relational data",
         reasoning:
-          "Training data has clear relationships (users → modules → progress → scores). Relational data fits better in a relational database. Also easier to write complex queries for admin dashboards.",
+          "Complex relationships: users → courses → modules → lessons → quizzes → compliance frameworks → controls. Relational database made these connections manageable and queryable for admin dashboards.",
       },
       {
-        decision: "Built a custom quiz engine instead of using a library",
+        decision: "Refresh token rotation with blacklisting for auth",
         reasoning:
-          "Existing quiz libraries didn't support the interactive scenario format we needed. Building custom gave us flexibility for future module types.",
+          "Standard JWTs are vulnerable if stolen. Rotation limits the window of exposure, and blacklisting allows immediate session termination. Security-by-design was a core principle.",
+      },
+      {
+        decision: "Docker for containerized deployment",
+        reasoning:
+          "Ensured consistent environments across development and production. Made it easier for the team to onboard and for future deployment to client infrastructure.",
       },
     ],
     tradeoffs: [
-      "Prioritized core functionality over polish—some admin features were left as MVPs because time was limited",
-      "Chose simpler authentication (JWT) over OAuth—faster to implement, but less convenient for enterprise SSO integration",
-      "Didn't implement real phishing simulations—out of scope for internship, but would be the most valuable feature",
+      "Built MVP versions of some manager features due to time constraints—prioritized core LMS and phishing functionality",
+      "Chose custom authentication over OAuth/SSO—faster to implement initially, but the team recommended adding SSO for enterprise clients later",
+      "Phishing email delivery required careful tuning to avoid spam filters—still an ongoing challenge for the team",
+      "Mobile version was recommended for future development but not implemented during the internship",
     ],
     outcome:
-      "Completed the core platform during my 2-month internship. The team continued development after I left. While I can't share metrics (internal tool), the architecture I built became the foundation for their production version.",
+      "Delivered a functional MVP integrating all three components: LMS, GRC compliance module, and phishing campaigns. Resolved performance issues including Next.js hydration errors and optimized load times (LCP improvements). The platform architecture I built became the foundation for Cybears' production version. Received positive feedback for the platform's usability and security-by-design approach.",
     learnings: [
-      "Learned how to work on a product with real users and stakeholders, not just school requirements",
-      "Understood that 'done' in a company means 'deployed and working', not 'code submitted'",
-      "First time dealing with security considerations in my own code—authentication, data protection, input validation",
-      "Learned to communicate technical decisions to non-technical stakeholders",
+      "First experience working in a real cybersecurity company—understood how awareness training connects to broader organizational security strategy",
+      "Learned Agile in practice: sprint planning, daily stand-ups, code reviews, and collaborating across departments (CyBrain for compliance alignment, CyBright for learning content)",
+      "Deepened understanding of security concepts: phishing tactics, social engineering, GRC frameworks, and how to bake security into code from the start",
+      "Improved debugging skills—resolving hydration errors, optimizing database queries, and handling real production issues",
+      "Learned to communicate technical decisions to both developers and non-technical stakeholders",
     ],
     technologies: [
       "Next.js",
       "TypeScript",
-      "PostgreSQL",
       "Tailwind CSS",
-      "Node.js",
-      "JWT",
-      "Prisma",
+      "Django REST Framework",
+      "PostgreSQL",
+      "Docker",
+      "GitHub",
     ],
     githubUrl: null,
     liveUrl: null,
   },
   restona: {
     title: "Restona",
-    subtitle: "Restaurant Reservation System",
-    context: "school",
+    subtitle: "Restaurant Management Platform",
+    context: "school_startup",
     description:
-      "A full-stack reservation system with online booking, table management, and menu display for restaurant owners.",
+      "A comprehensive digital platform for restaurant management in Algeria—covering menu management, multi-restaurant support, employee roles, orders, and future mobile apps for clients and delivery.",
     heroImage: "/projects/restona/hero.png",
     images: [
       {
-        src: "/projects/restona/booking.png",
-        alt: "Reservation booking interface",
-        caption:
-          "Booking flow — Select date, time, and party size in under 30 seconds",
-      },
-      {
-        src: "/projects/restona/admin.png",
+        src: ["/projects/restona/image4.png", "/projects/restona/image5.png"],
         alt: "Restaurant admin dashboard",
         caption:
-          "Admin view — Staff can manage reservations and see today's bookings at a glance",
+          "ZH Dashboard — Manage all restaurants, deliveries, and analytics from a single interface",
       },
       {
-        src: "/projects/restona/confirmation.png",
-        alt: "Booking confirmation with email preview",
+        src: [
+          "/projects/restona/hero.png",
+          "/projects/restona/image.png",
+          "/projects/restona/image2.png",
+          "/projects/restona/image6.png",
+        ],
+        alt: "Restaurant admin dashboard",
         caption:
-          "Confirmation — Automatic email sent with reservation details and modification link",
+          "Admin Dashboard — Manage menus, employees, and his restaurants from a centralized interface",
+      },
+      {
+        src: "/projects/restona/image3.png",
+        alt: "Employee management with role-based access",
+        caption:
+          "Employee Management — Role-based access for Chefs, and Cashiers",
       },
     ],
-<<<<<<< HEAD
     problem:
-      "Small restaurants often rely on phone calls for reservations, leading to missed bookings, double bookings, and no-shows. They need a simple system that doesn't require training to use.",
+      "In Algeria, many restaurants still manage menus, orders, and staff manually or with inadequate tools. This leads to errors, inefficiency, and difficulty tracking trends. With the restaurant market growing 5% annually, restaurateurs need modern digital solutions to stay competitive.",
     approach: [
-      "Researched existing reservation systems to understand common patterns and pain points",
-      "Designed a booking flow that requires minimal clicks—select date, time, party size, confirm",
-      "Built real-time availability checking to prevent double bookings",
-      "Created an admin dashboard for restaurant staff to manage reservations and view analytics",
+      "Collaborated with Zine Eddine Tahri (backend) while I handled the entire frontend—we worked in 2-week sprints with clear deliverables",
+      "Built a modular architecture supporting multiple restaurants per admin, with role-based access (Admin, Chef, Cashier)",
+      "Implemented complete menu management: Categories → Dishes → Additives, with images via Cloudinary and flexible pricing (sizes)",
+      "Created employee management with secure authentication (OTP verification for admins, password-based for staff)",
+      "Designed the system to integrate with future mobile apps for customers and delivery drivers",
     ],
     decisions: [
       {
-        decision: "Used Next.js App Router",
+        decision:
+          "Next.js frontend + Node.js/Express backend (separate services)",
         reasoning:
-          "Wanted to learn the new paradigm (server components, streaming). Also better for SEO on the public-facing restaurant pages.",
+          "Decoupled architecture allows frontend and backend to scale independently. Also let us work in parallel—I focused on Next.js while my partner built the Express APIs.",
       },
       {
-        decision: "PostgreSQL with row-level locking for reservations",
+        decision: "PostgreSQL + Redis for data and caching",
         reasoning:
-          "Had to prevent race conditions when two people try to book the same time slot simultaneously. Database-level locking is more reliable than application-level checks.",
+          "PostgreSQL handles complex relational data (restaurants → menus → dishes → additives → employees). Redis caches frequent queries and manages session tokens for faster response times.",
       },
       {
-        decision: "Email confirmations instead of SMS",
+        decision: "Cloudinary for image management",
         reasoning:
-          "SMS APIs cost money and require phone number verification. Email is free and most people check it. Could add SMS later as a premium feature.",
+          "Restaurants upload many dish images. Cloudinary handles optimization, resizing, and CDN delivery—better than managing images ourselves on the server.",
+      },
+      {
+        decision: "OTP-based verification for admin registration",
+        reasoning:
+          "Restaurant admins manage sensitive business data. OTP via SMS adds a verification layer and ensures phone numbers are valid before account creation.",
       },
     ],
     tradeoffs: [
-      "No payment integration—out of scope for school project, but would be essential for real restaurants (deposits, cancellation fees)",
-      "Single restaurant per instance—didn't build multi-tenancy. Each restaurant would need their own deployment",
-      "Basic analytics—shows reservation counts but no advanced insights like peak hours, no-show prediction",
-=======
-    githubUrl: "https://github.com/N4dj1b/Realtime-Chat",
-    liveUrl: "https://mychat1pp.netlify.app/",
-    challenges:
-      "Implementing real-time messaging with WebSockets was a significant challenge. I overcame this by using Firebase's real-time database and authentication features, which simplified the process of managing user sessions and message delivery.",
-    outcome:
-      "The chat app has over 5,000 active users and has been praised for its intuitive interface and fast performance. It has also been featured in several tech blogs for its innovative use of real-time technology.",
-  },
-  "weather-dashboard": {
-    title: "Weather Dashboard",
-    description:
-      "A responsive weather dashboard with interactive visualizations.",
-    longDescription:
-      "This weather dashboard provides comprehensive weather information with beautiful visualizations, location-based forecasts, and historical data analysis. The application features interactive charts, maps, and a clean, intuitive interface that works seamlessly across all devices.",
-    image: "/placeholder.svg?height=400&width=800",
-    technologies: ["React", "OpenWeatherMap API", "CSS"],
-    features: [
-      "Current weather conditions",
-      "7-day weather forecast",
-      "Interactive weather maps",
-      "Historical weather data",
-      "Location-based search",
-      "Weather alerts and notifications",
-      "Customizable dashboard widgets",
-      "Data export functionality",
-    ],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
-    challenges:
-      "Handling large amounts of weather data and presenting it in an intuitive way was challenging. I implemented efficient data caching strategies and created custom chart components for optimal performance.",
-    outcome:
-      "The dashboard serves over 10,000 daily active users and has been featured in several weather-related publications for its innovative design and functionality.",
-  },
-  "Tours-platform": {
-    title: "Mytours",
-    description:
-      "A platform for booking and managing tours with user reviews and ratings.",
-    longDescription:
-      "This platform allows users to explore various tours, book them online, and leave reviews. It features a user-friendly interface, secure payment processing, and an admin dashboard for managing tours and user feedback.",
-    image: "/placeholder.svg?height=400&width=800",
-    technologies: ["Node.js", "Express", "MongoDB", "Pug", "Stripe", "Mapbox GL"],
-    features: [
-      "Tour listings with detailed descriptions",
-      "User authentication and profile management",
-      "Booking system with secure payment integration",
-      "User reviews and ratings",
-      "Admin dashboard for tour management",
-      "Responsive design for mobile and desktop",
-      "Search and filter functionality",
-      "Email notifications for bookings and reviews",
->>>>>>> 0ed4629dfdc9e8b55345588834b166474a00f85e
+      "No payment integration in v1—critical for real deployment but complex to implement (Algerian payment gateways have specific requirements)",
+      "Mobile apps (client + delivery) designed but not yet built—the web platform is the MVP, mobile is next phase",
+      "Super admin (ZH) features exist but some operations depend on mobile app data that doesn't exist yet",
+      "Estimated budget of ~1.5M DZD + $2K for full deployment—realistic for a startup but significant investment",
     ],
     outcome:
-      "Completed as a team project. Successfully demonstrated real-time booking with concurrent users during presentation. Professor noted the database design was more sophisticated than typical school projects.",
+      "Delivered a functional platform covering restaurant management, menu CRUD, employee roles, and admin workflows. The architecture supports the planned expansion to mobile apps. Presented as a startup pitch, not just a school project—with full business plan, budget estimation, and market analysis.",
     learnings: [
-      "First time dealing with concurrency issues in a practical context",
-      "Learned that 'it works on my machine' doesn't mean it works—testing with multiple users revealed bugs",
-      "Understood the importance of database transactions and ACID properties",
-      "Team collaboration with Git—learned to resolve merge conflicts and coordinate feature branches",
+      "First time building a full SaaS-style product with business considerations (pricing, market positioning, competitor analysis)",
+      "Learned to coordinate frontend/backend development with clear API contracts—we defined endpoints before coding",
+      "Understood multi-tenancy patterns: one codebase serving multiple restaurants with data isolation",
+      "Practiced sprint-based development with versioned releases (v1.0 through v6.0 over 2 months)",
+      "Gained experience with real-world auth flows: OTP verification, role-based access, token management",
     ],
     technologies: [
       "Next.js",
       "TypeScript",
-      "PostgreSQL",
       "Tailwind CSS",
-      "Express",
-      "Prisma",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "Redis",
+      "Cloudinary",
     ],
-    githubUrl: "https://github.com/N4dj1b/Restona",
-    liveUrl: null,
+    githubUrl: null,
+    liveUrl: "https://restona.vercel.app",
   },
   "event-management": {
     title: "Event Management System",
@@ -317,12 +289,11 @@ const projects: Record<string, ProjectType> = {
       "Real deployment issues: CORS, environment variables, database connection limits",
     ],
     technologies: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
+      "React.js",
       "Tailwind CSS",
-      "QR Code generation",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
     ],
     githubUrl: "https://github.com/N4dj1b/EventManagement",
     liveUrl: null,
@@ -332,13 +303,19 @@ const projects: Record<string, ProjectType> = {
 const contextConfig = {
   internship: {
     icon: Building2,
-    label: "Internship Project",
+    label: "Internship Project at Cybears",
     color: "text-green-600 bg-green-100 dark:bg-green-900/30",
-    description: "Built during a 2-month internship at a company",
+    description: "Built during a 2-month internship at Cybears",
   },
   school: {
     icon: GraduationCap,
     label: "School Project",
+    color: "text-blue-600 bg-blue-100 dark:bg-blue-900/30",
+    description: "Completed as part of coursework at ESI-SBA",
+  },
+  school_startup: {
+    icon: GraduationCap,
+    label: "Startup Idea & School Project",
     color: "text-blue-600 bg-blue-100 dark:bg-blue-900/30",
     description: "Completed as part of coursework at ESI-SBA",
   },
@@ -417,7 +394,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </Button>
               )}
               {!project.githubUrl && !project.liveUrl && (
-                <p className="text-sm text-muted-foreground italic">
+                <p className="text-sm italic text-muted-foreground">
                   Code and demo not publicly available (company project)
                 </p>
               )}
@@ -426,7 +403,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           {/* Hero Image */}
           {project.heroImage && (
-            <div className="mb-12 rounded-xl overflow-hidden border bg-muted/30">
+            <div className="mb-12 overflow-hidden border rounded-xl bg-muted/30">
               <div className="relative aspect-[16/9]">
                 <ProjectHeroImage
                   src={project.heroImage}
@@ -436,34 +413,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           )}
 
-<<<<<<< HEAD
           {/* The Problem */}
           <section className="mb-12">
             <div className="flex items-center gap-2 mb-4">
               <Target className="w-5 h-5 text-red-500" />
               <h2 className="text-2xl font-semibold">The Problem</h2>
             </div>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-lg leading-relaxed text-muted-foreground">
               {project.problem}
             </p>
           </section>
-=======
-          <div className="grid gap-8 mb-8 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Project Purpose and Goal</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  {project.longDescription}
-                </p>
-              </CardContent>
-            </Card>
->>>>>>> 0ed4629dfdc9e8b55345588834b166474a00f85e
 
           {/* My Approach */}
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-4">My Approach</h2>
+            <h2 className="mb-4 text-2xl font-semibold">My Approach</h2>
             <ul className="space-y-3">
               {project.approach.map((step, index) => (
                 <li key={index} className="flex items-start gap-3">
@@ -483,7 +446,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           {/* Technical Decisions */}
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6">Technical Decisions</h2>
+            <h2 className="mb-6 text-2xl font-semibold">Technical Decisions</h2>
             <div className="space-y-4">
               {project.decisions.map((item, index) => (
                 <Card key={index}>
@@ -510,7 +473,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 Tradeoffs & Limitations
               </h2>
             </div>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="mb-4 text-sm text-muted-foreground">
               Every project has constraints. Here's what I chose not to build
               and why:
             </p>
@@ -530,13 +493,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <CheckCircle2 className="w-5 h-5 text-green-500" />
               <h2 className="text-2xl font-semibold">Outcome</h2>
             </div>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-lg leading-relaxed text-muted-foreground">
               {project.outcome}
             </p>
           </section>
 
           {/* What I Learned */}
-          <section className="mb-12 p-6 bg-muted/50 rounded-lg">
+          <section className="p-6 mb-12 rounded-lg bg-muted/50">
             <div className="flex items-center gap-2 mb-4">
               <Lightbulb className="w-5 h-5 text-primary" />
               <h2 className="text-xl font-semibold">What I Learned</h2>

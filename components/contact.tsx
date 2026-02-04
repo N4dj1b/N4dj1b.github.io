@@ -14,14 +14,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Send, Calendar } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Send,
+  Calendar,
+  Linkedin,
+  Loader2,
+  CheckCircle,
+} from "lucide-react";
 import Link from "next/link";
 
 type FormData = {
-  name: string
-  email: string
-  message: string
-}
+  name: string;
+  email: string;
+  message: string;
+};
 
 export function Contact() {
   const [formData, setFormData] = useState<FormData>({
@@ -29,13 +37,44 @@ export function Contact() {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact: ${formData.name}`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -45,6 +84,8 @@ export function Contact() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    // Reset status when user starts typing again
+    if (submitStatus !== "idle") setSubmitStatus("idle");
   };
 
   return (
@@ -53,9 +94,9 @@ export function Contact() {
         <div className="max-w-4xl mx-auto">
           <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Let's Talk</h2>
           <p className="max-w-2xl mb-12 text-lg text-muted-foreground">
-            Looking for an internship or junior developer role starting Summer
-            2026. If you're hiring or just want to chat about a project, I'd
-            love to hear from you.
+            Currently available for internships, junior roles, or freelance
+            projects. If you're hiring or just want to chat, I'd love to hear
+            from you.
           </p>
 
           <div className="grid gap-12 md:grid-cols-2">
@@ -90,7 +131,7 @@ export function Contact() {
                     <strong className="text-foreground">
                       Roles that value security awareness
                     </strong>{" "}
-                    my background means I can spot vulnerabilities others might
+                    My background means I can spot vulnerabilities others might
                     miss.
                   </p>
                 </div>
@@ -104,6 +145,16 @@ export function Contact() {
                     className="transition-colors hover:text-primary"
                   >
                     mn.taleb@esi-sba.dz
+                  </Link>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Linkedin className="w-5 h-5 text-primary shrink-0" />
+                  <Link
+                    href="https://linkedin.com/in/mohamed-nadjib-taleb"
+                    target="_blank"
+                    className="transition-colors hover:text-primary"
+                  >
+                    linkedin.com/in/mohamed-nadjib-taleb
                   </Link>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -149,7 +200,7 @@ export function Contact() {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="you@company.com"
+                      placeholder="your@email.com"
                       required
                     />
                   </div>
@@ -165,10 +216,42 @@ export function Contact() {
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full">
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Message
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
+
+                  {submitStatus === "success" && (
+                    <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
+                      <CheckCircle className="w-4 h-4" />
+                      Message sent! I'll get back to you soon.
+                    </div>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <div className="text-sm text-red-600 dark:text-red-400">
+                      Something went wrong. Please email me directly at{" "}
+                      <Link
+                        href="mailto:mn.taleb@esi-sba.dz"
+                        className="underline"
+                      >
+                        mn.taleb@esi-sba.dz
+                      </Link>
+                    </div>
+                  )}
                 </form>
               </CardContent>
             </Card>
