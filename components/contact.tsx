@@ -1,5 +1,8 @@
 "use client";
 
+import type React from "react";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,10 +11,83 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Mail, MapPin, Calendar, Linkedin } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Mail,
+  MapPin,
+  Send,
+  Calendar,
+  Linkedin,
+  Loader2,
+  CheckCircle,
+} from "lucide-react";
 import Link from "next/link";
 
+type FormData = {
+  name: string;
+  email: string;
+  message: string;
+};
+
 export function Contact() {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "bd9dbc3f-0e34-47dc-91fc-2e4f96bbb0d7",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact: ${formData.name}`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+    // Reset status when user starts typing again
+    if (submitStatus !== "idle") setSubmitStatus("idle");
+  };
+
   return (
     <section id="contact" className="py-20">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
@@ -98,19 +174,85 @@ export function Contact() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Reach me directly</CardTitle>
+                <CardTitle className="text-lg">Send a message</CardTitle>
                 <CardDescription>
-                  The fastest way to reach me is by email.
+                  I typically respond within 24-48 hours.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="mb-4 text-sm text-muted-foreground">
-                  I usually reply within 24-48 hours. Include a quick summary
-                  and any links or context to help me respond faster.
-                </p>
-                <Button asChild className="w-full">
-                  <Link href="mailto:mn.taleb@esi-sba.dz">Email me</Link>
-                </Button>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell me about the opportunity or what you'd like to discuss..."
+                      required
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+
+                  {submitStatus === "success" && (
+                    <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
+                      <CheckCircle className="w-4 h-4" />
+                      Message sent! I'll get back to you soon.
+                    </div>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <div className="text-sm text-red-600 dark:text-red-400">
+                      Something went wrong. Please email me directly at{" "}
+                      <Link
+                        href="mailto:mn.taleb@esi-sba.dz"
+                        className="underline"
+                      >
+                        mn.taleb@esi-sba.dz
+                      </Link>
+                    </div>
+                  )}
+                </form>
               </CardContent>
             </Card>
           </div>
