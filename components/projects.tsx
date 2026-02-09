@@ -89,7 +89,7 @@ export function Projects() {
       problem:
         "Algerian restaurants manage operations manually, leading to inefficiency. With 5% annual market growth, they need modern digital solutions.",
       outcome:
-        "Built full platform with 3 user roles, 20+ API endpoints, and multi-restaurant architecture. Presented as startup pitch with business plan.",
+        "Built full platform with 4 user roles, 20+ API endpoints, and multi-restaurant architecture. Presented as startup pitch with business plan.",
       technologies: [
         "Next.js",
         "TypeScript",
