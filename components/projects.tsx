@@ -126,7 +126,7 @@ export function Projects() {
         "MongoDB",
       ],
       previewImage: "/projects/events/hero.png",
-      githubUrl: "https://github.com/N4dj1b/EventManagement",
+      githubUrl: "https://github.com/Shellmates/Event-Organization-Plateform-Frontend",
       liveUrl: null,
       featured: false,
     },
