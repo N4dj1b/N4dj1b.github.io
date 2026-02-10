@@ -2,6 +2,8 @@
 const nextConfig = {
   output: "export",
 
+  basePath: "/N4dj1b.github.io",
+
   images: {
     unoptimized: true,
   },
