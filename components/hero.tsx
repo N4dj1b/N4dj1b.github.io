@@ -6,9 +6,14 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5"
+      className="relative flex items-center justify-center min-h-screen overflow-hidden bg-background"
     >
-      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+      <div className="absolute inset-0 z-0 bg-grid-slate-900 bg-[size:32px_32px]"></div>
+      <div className="absolute inset-0 z-0 pointer-events-none bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      
+      <div className="absolute top-0 -translate-x-1/2 left-1/2 w-[800px] h-[400px] bg-primary/20 rounded-full blur-[100px] -z-10 opacity-50 dark:opacity-30 pointer-events-none"></div>
+
+      <div className="container relative z-10 px-4 mx-auto sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           {/* Status badge */}
           <div className="flex items-center justify-center gap-2 mb-8">
@@ -21,8 +26,8 @@ export function Hero() {
             </span>
           </div>
 
-          <h1 className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl text-foreground">
-            Hey, I'm Nadjib - I build secure web apps
+          <h1 className="mb-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-foreground">
+            Hey, I'm Nadjib - I build <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">secure web apps</span>
           </h1>
 
           <p className="mb-6 text-xl sm:text-2xl text-foreground/80">

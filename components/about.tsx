@@ -53,7 +53,7 @@ export function About() {
             </div>
 
             <div className="space-y-4 md:col-span-2">
-              <Card className="border-l-4 border-l-primary">
+              <Card className="border-l-4 border-l-primary transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:bg-muted/30 dark:hover:bg-muted/10">
                 <CardContent className="p-5">
                   <div className="flex items-start space-x-4">
                     <div className="p-2 rounded-lg bg-primary/10 shrink-0">
@@ -72,7 +72,7 @@ export function About() {
                 </CardContent>
               </Card>
 
-              <Card className="border-l-4 border-l-green-500">
+              <Card className="border-l-4 border-l-green-500 transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:bg-muted/30 dark:hover:bg-muted/10">
                 <CardContent className="p-5">
                   <div className="flex items-start space-x-4">
                     <div className="p-2 rounded-lg bg-green-500/10 shrink-0">
@@ -91,7 +91,7 @@ export function About() {
                 </CardContent>
               </Card>
 
-              <Card className="border-l-4 border-l-orange-500">
+              <Card className="border-l-4 border-l-orange-500 transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:bg-muted/30 dark:hover:bg-muted/10">
                 <CardContent className="p-5">
                   <div className="flex items-start space-x-4">
                     <div className="p-2 rounded-lg bg-orange-500/10 shrink-0">
@@ -110,7 +110,7 @@ export function About() {
                 </CardContent>
               </Card>
 
-              <Card className="border-l-4 border-l-blue-500">
+              <Card className="border-l-4 border-l-blue-500 transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:bg-muted/30 dark:hover:bg-muted/10">
                 <CardContent className="p-5">
                   <div className="flex items-start space-x-4">
                     <div className="p-2 rounded-lg bg-blue-500/10 shrink-0">

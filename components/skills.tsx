@@ -26,6 +26,7 @@ export function Skills() {
         "MongoDB",
         "Firebase",
         "Docker",
+        "K8s",
         "Python",
         "Django REST",
         "REST APIs",
@@ -68,7 +69,7 @@ export function Skills() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {skillCategories.map((category, index) => (
-              <Card key={index} className="h-full">
+              <Card key={index} className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30 dark:hover:bg-card/80">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-lg">{category.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
@@ -81,7 +82,7 @@ export function Skills() {
                       <Badge
                         key={skillIndex}
                         variant={category.variant}
-                        className="text-sm"
+                        className="text-sm transition-transform duration-300 cursor-default hover:scale-105"
                       >
                         {skill}
                       </Badge>

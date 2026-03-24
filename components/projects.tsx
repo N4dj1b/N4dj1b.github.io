@@ -174,7 +174,7 @@ export function Projects() {
                 <Card
                   key={project.id}
                   id={project.id}
-                  className="overflow-hidden border-l-4 border-l-primary"
+                  className="overflow-hidden border-l-4 border-l-primary transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/75 dark:hover:border-primary/50"
                 >
                   {/* Preview Image */}
                   <Link
@@ -268,7 +268,7 @@ export function Projects() {
             {projects
               .filter((p) => !p.featured)
               .map((project) => (
-                <Card key={project.id} className="overflow-hidden">
+                <Card key={project.id} className="overflow-hidden transition-all duration-300 border-l-4 border-transparent hover:shadow-xl hover:-translate-y-1 hover:border-l-primary/50 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/75">
                   <CardHeader>
                     <div className="flex flex-wrap items-center gap-3">
                       <div
@@ -328,7 +328,7 @@ export function Projects() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               {learningProjects.map((project) => (
-                <Card key={project.id} className="bg-muted/50">
+                <Card key={project.id} className="transition-all duration-300 bg-muted/50 hover:bg-muted hover:shadow-md hover:-translate-y-1">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-base">{project.title}</CardTitle>
                     <CardDescription className="text-sm">

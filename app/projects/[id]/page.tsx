@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import {
   ProjectHeroImage,
   ProjectImageGallery,
@@ -335,6 +336,24 @@ interface ProjectPageProps {
   params: Promise<{ id: string }>;
 }
 
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const project = projects[id as keyof typeof projects];
+  
+  if (!project) return {};
+  
+  return {
+    title: `${project.title} | Mohamed Nadjib Taleb`,
+    description: project.description,
+    openGraph: {
+      title: `${project.title} | Mohamed Nadjib Taleb`,
+      description: project.description,
+      images: project.heroImage ? [project.heroImage] : [],
+      type: "website",
+    },
+  };
+}
+
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { id } = await params;
   const project = projects[id as keyof typeof projects];
@@ -346,9 +365,26 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const context = contextConfig[project.context];
   const ContextIcon = context.icon;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": project.title,
+    "description": project.description,
+    "programmingLanguage": project.technologies,
+    "author": {
+      "@type": "Person",
+      "name": "Mohamed Nadjib Taleb"
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container px-4 py-8 mx-auto sm:px-6 lg:px-8">
+    <div className="min-h-screen relative bg-background">
+      <div className="absolute inset-0 z-0 pointer-events-none bg-grid-slate-900 bg-[size:32px_32px] opacity-50 [mask-image:linear-gradient(to_bottom,black,transparent_30%)]"></div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="container relative z-10 px-4 py-8 mx-auto sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           {/* Back button */}
           <Button variant="ghost" asChild className="mb-8">
@@ -453,7 +489,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h2 className="mb-6 text-2xl font-semibold">Technical Decisions</h2>
             <div className="space-y-4">
               {project.decisions.map((item, index) => (
-                <Card key={index}>
+                <Card key={index} className="transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-primary/30 dark:hover:bg-muted/10">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-base font-semibold">
                       {item.decision}
