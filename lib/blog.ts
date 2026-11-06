@@ -20,6 +20,7 @@ export type BlogPostMeta = {
   category: string;
   tags: string[];
   cover?: string;
+  certificate?: string;
   featured: boolean;
   draft: boolean;
   readingTime: number;
@@ -34,6 +35,17 @@ function toDateString(value: unknown): string {
   if (value instanceof Date) return value.toISOString().slice(0, 10);
   if (typeof value === "string") return value;
   return "";
+}
+
+function resolvePublicAsset(value: unknown): string | undefined {
+  if (typeof value !== "string" || !value.startsWith("/")) return undefined;
+
+  const assetPath = path.join(
+    process.cwd(),
+    "public",
+    value.replace(/^\/+/, "")
+  );
+  return fs.existsSync(assetPath) ? value : undefined;
 }
 
 function calculateReadingTime(content: string): number {
@@ -90,6 +102,7 @@ function parsePost(slug: string): BlogPost {
       typeof data.category === "string" ? data.category : "Security Research",
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     cover: typeof data.cover === "string" ? data.cover : undefined,
+    certificate: resolvePublicAsset(data.certificate),
     featured: Boolean(data.featured),
     draft: Boolean(data.draft),
     readingTime: calculateReadingTime(content),
@@ -126,6 +139,7 @@ export function getAllPosts(): BlogPostMeta[] {
       category: post.category,
       tags: post.tags,
       cover: post.cover,
+      certificate: post.certificate,
       featured: post.featured,
       draft: post.draft,
       readingTime: post.readingTime,

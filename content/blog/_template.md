@@ -5,6 +5,7 @@ date: "YYYY-MM-DD"
 category: "CTF Writeup"
 tags: ["web", "sql-injection", "burp"]
 # cover: "/blog/my-post/cover.png"
+# certificate: "/blog/my-post/certificate.png"
 featured: false
 draft: true
 ---
@@ -19,7 +20,13 @@ How to use this template:
 Available categories:
 - "CTF Writeup"
 - "Security Research"
+- "Lab Writeup"
 - "Notes"
+
+Set an optional certificate image in the frontmatter to add a
+"Lab certificate" section at the bottom of the post. The image can live in
+public/blog/my-post/certificate.png and be referenced as
+"/blog/my-post/certificate.png".
 
 Files starting with an underscore are ignored by the blog.
 -->

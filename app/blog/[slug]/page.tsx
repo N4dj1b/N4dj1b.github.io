@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
+  Award,
   CalendarDays,
   Clock,
   User,
@@ -212,6 +213,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </p>
                 </div>
               </div>
+
+              {post.certificate && (
+                <section className="mt-12" aria-labelledby="lab-certificate">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Award className="w-5 h-5 text-amber-500" />
+                    <h2 id="lab-certificate" className="text-2xl font-semibold">
+                      Lab certificate
+                    </h2>
+                  </div>
+                  <div className="overflow-hidden border rounded-xl bg-muted/30">
+                    <Image
+                      src={post.certificate}
+                      alt="Certificate of completion for the HTB Puppet Mini Pro Lab"
+                      width={1600}
+                      height={1131}
+                      sizes="(min-width: 1024px) 768px, 100vw"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </section>
+              )}
 
               <nav
                 aria-label="More posts"

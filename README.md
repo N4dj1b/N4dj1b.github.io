@@ -36,9 +36,10 @@ Copy `content/blog/_template.md` to get started. Frontmatter:
 title: "SQL injection in a login form"
 description: "A short summary shown on cards and in search results."
 date: "2026-10-28"
-category: "Security Research" # CTF Writeup | Security Research | Notes
+category: "Security Research" # CTF Writeup | Security Research | Lab Writeup | Notes
 tags: ["web", "sql-injection"]
 cover: "/blog/my-post/cover.png" # optional
+certificate: "/blog/my-post/certificate.png" # optional, shows a lab certificate section
 featured: false
 draft: false
 ---
@@ -50,6 +51,7 @@ Your post content...
 - Files starting with an underscore (for example `_template.md`) are ignored.
 - Markdown supports GFM tables, task lists, and syntax-highlighted code fences.
 - Posts are sorted by date, newest first.
+- If a post sets `certificate`, the image must exist in `public/` or the section is omitted automatically.
 
 ## Build
 

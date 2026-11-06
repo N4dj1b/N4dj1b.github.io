@@ -21,6 +21,13 @@ const CATEGORY_STYLES: Record<string, CategoryStyle> = {
     accent: "bg-blue-500",
     gradient: "from-blue-500/15 via-indigo-500/5 to-transparent",
   },
+  "Lab Writeup": {
+    label: "Lab Writeup",
+    badge:
+      "text-amber-600 bg-amber-100 dark:text-amber-400 dark:bg-amber-900/30",
+    accent: "bg-amber-500",
+    gradient: "from-amber-500/15 via-orange-500/5 to-transparent",
+  },
   Notes: {
     label: "Notes",
     badge:
