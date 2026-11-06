@@ -73,7 +73,7 @@ export function Hero() {
               asChild
               className="text-muted-foreground"
             >
-              <Link href="/Taleb_Mohamed_Nadjib_Resume.pdf" target="_blank">
+              <Link href="/Mohamed_Nadjib_Taleb_CV_IT.pdf" target="_blank">
                 <FileText className="w-4 h-4 mr-2" />
                 Resume
               </Link>
