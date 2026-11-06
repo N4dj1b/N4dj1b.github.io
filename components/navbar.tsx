@@ -2,26 +2,33 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet"
 import { Menu, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+import { cn } from "@/lib/utils"
 
 export function Navbar() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
   const navItems = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#home", label: "Home" },
+    { href: "/#about", label: "About" },
+    { href: "/#skills", label: "Skills" },
+    { href: "/#projects", label: "Projects" },
+    { href: "/blog", label: "Blog" },
+    { href: "/#contact", label: "Contact" },
   ]
+
+  const isActive = (href: string) =>
+    href === "/blog" ? pathname.startsWith("/blog") : false
 
   const toggleTheme = () => {
     if (theme === "dark") {
@@ -45,7 +52,15 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="items-center hidden space-x-8 md:flex">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="transition-colors text-foreground hover:text-primary">
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={cn(
+                  "transition-colors hover:text-primary",
+                  isActive(item.href) ? "font-medium text-primary" : "text-foreground"
+                )}
+              >
                 {item.label}
               </Link>
             ))}
@@ -78,7 +93,11 @@ export function Navbar() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="text-lg transition-colors text-foreground hover:text-primary"
+                      aria-current={isActive(item.href) ? "page" : undefined}
+                      className={cn(
+                        "text-lg transition-colors hover:text-primary",
+                        isActive(item.href) ? "font-medium text-primary" : "text-foreground"
+                      )}
                     >
                       {item.label}
                     </Link>

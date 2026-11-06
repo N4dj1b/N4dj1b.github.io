@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { BookOpen, Github, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   return (
@@ -14,6 +14,13 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-6">
+            <Link
+              href="/blog"
+              className="transition-colors text-muted-foreground hover:text-foreground"
+              aria-label="Blog"
+            >
+              <BookOpen className="w-5 h-5" />
+            </Link>
             <Link
               href="https://github.com/N4dj1b"
               target="_blank"
