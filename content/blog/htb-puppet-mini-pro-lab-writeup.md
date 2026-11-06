@@ -26,7 +26,11 @@ Puppet is a Windows AD lab with a Linux Puppet master pulling the strings. The i
 
 ## The edge box: a C2 server hiding in plain sight
 
-Nmap on the edge host did not take long. FTP was open, and anonymous login was enabled. The FTP root had two files that did not belong on an internet-facing box: a 36 MB Linux Sliver client and an operator config.
+Nmap on the edge host did not take long. FTP was open, and anonymous login was enabled. The scan also showed SSH, an HTTPS-alt service on 8443, and 31337/tcp with an SSL certificate for `multiplayer`. The FTP root explained that last port: it held a 36 MB Linux Sliver client and an operator config.
+
+![Nmap scan showing FTP, SSH, 8443, and the Sliver teamserver on 31337](/blog/puppet/01-nmap.webp)
+
+*Nmap showed FTP, SSH, 8443, and the Sliver teamserver on 31337.*
 
 ![Anonymous FTP listing showing the Sliver client and an operator config](/blog/puppet/02-ftp.webp)
 
